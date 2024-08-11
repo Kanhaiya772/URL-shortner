@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <style>
+        
+      body{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+      }
+
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width , initial-scale=1.0"/>
+    <title>home page </title>
+</head>
+<body>
+
+<div>
+    <h1> URL Shortner </h1>
+<% if (locals.id) { %>
+<p style="background-color: chartreuse"  > URL Generated : http://localhost:8001/url/<%=id%> </p>
+ <% } %> 
+    <form method="post" action="/url">
+        <label> Enter your URl here</label>
+        <input name="url"  type="text" placeholder="example : https://example.org.org">
+        <button type="submit"> Generate</button>
+    </form>
+    
+    <div>
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th>S-NO </th>
+                    <th>SHORT-ID </th>
+                    <TH> REDIRECTED-URL </TH>
+                    <TH> CLICKS</TH>
+                    <!-- <script>  console.log(urls) </script> -->
+                </thead>
+                <tbody>
+                    <tr>
+
+                    
+                    <% urls.forEach((url , index) => { %>
+                        <td><% index+1 %></td>
+                        <td><% url.shortid %></td>
+                        <td><% url.redirecturl %></td>
+                        <td><% url.visithistory.length %></td>
+                 
+                     
+                    <% }) %>
+                </tr> 
+                </tbody>
+            </table>
+         
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
